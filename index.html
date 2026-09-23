@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Math Flap Quest - Santai & Cerdas</title>
+  <!-- Google Fonts: Outfit -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div id="game-container">
+    <!-- Canvas Utama Game -->
+    <canvas id="gameCanvas"></canvas>
+
+    <!-- Top HUD Bar -->
+    <div id="hud">
+      <div class="hud-pill" id="hud-score">
+        <span class="hud-label">Skor</span>
+        <span class="hud-val" id="val-score">0</span>
+      </div>
+      <div class="hud-pill" id="hud-streak">
+        <span class="hud-label">Streak 🔥</span>
+        <span class="hud-val" id="val-streak">0</span>
+      </div>
+      <div class="hud-pill" id="hud-towers">
+        <span class="hud-label">Tower</span>
+        <span class="hud-val" id="val-towers">0</span>
+      </div>
+      <button id="btn-sound" title="Toggle Suara" aria-label="Toggle Suara">🔊</button>
+    </div>
+
+    <!-- Shield / Hovering Indicator Notification -->
+    <div id="shield-indicator">🛡️ PERLINDUNGAN AKTIF (MELAYANG)</div>
+
+    <!-- START SCREEN MODAL -->
+    <div class="modal-overlay active" id="modal-start">
+      <div class="card-box">
+        <div class="hero-title">MATH FLAP QUEST</div>
+        <div class="hero-subtitle">Terbang santai, pecahkan kuis matematika, hancurkan rintangan tower!</div>
+
+        <ul class="features-list">
+          <li>✨ <b>Fisika Melayang Santai:</b> Gravitasi lembut & celah sangat lebar.</li>
+          <li>🎯 <b>Hitbox Toleran:</b> Ramah pemula, fokus pada kuis matematika.</li>
+          <li>💥 <b>Kuis Berhadiah:</b> Jawab benar untuk meledakkan tower di depan!</li>
+          <li>⌨️ <b>Kontrol Fleksibel:</b> Space / Tap layar, ketik angka / klik tombol 1-4.</li>
+        </ul>
+
+        <button class="btn-primary" id="btn-start-game">
+          <span>🚀 MULAI PETUALANGAN</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- QUIZ POPUP MODAL -->
+    <div class="modal-overlay" id="modal-quiz">
+      <div class="card-box">
+        <div class="quiz-header-tag">⚡ KUIS KEJUTAN MATEMATIKA ⚡</div>
+        <div class="quiz-question" id="quiz-question-text">12 + 8 = ?</div>
+
+        <!-- Typing input section -->
+        <div class="quiz-input-group">
+          <input type="number" id="quiz-input-field" class="quiz-input" placeholder="Ketik jawaban..." autocomplete="off">
+          <button class="btn-submit-type" id="btn-submit-typed">KIRIM</button>
+        </div>
+
+        <div class="or-divider">— ATAU PILIH SALAH SATU —</div>
+
+        <!-- Dynamic Options Grid (2, 3, or 4 options) -->
+        <div class="quiz-options-grid" id="quiz-options-container">
+          <!-- Populated by JS -->
+        </div>
+
+        <div class="quiz-feedback" id="quiz-feedback-text"></div>
+      </div>
+    </div>
+
+    <!-- GAME OVER SCREEN MODAL -->
+    <div class="modal-overlay" id="modal-gameover">
+      <div class="card-box">
+        <div class="gameover-title">GAME OVER</div>
+        <div class="hero-subtitle">Tetap semangat! Asah terus kecepatan berhitungmu.</div>
+
+        <div class="stats-grid">
+          <div class="stat-item">
+            <div class="hud-label">Skor Akhir</div>
+            <div class="stat-val" id="go-score" style="color: var(--primary-glow);">0</div>
+          </div>
+          <div class="stat-item">
+            <div class="hud-label">Tower Dilewati</div>
+            <div class="stat-val" id="go-towers">0</div>
+          </div>
+          <div class="stat-item">
+            <div class="hud-label">Streak Terbaik</div>
+            <div class="stat-val" id="go-max-streak" style="color: var(--accent-gold);">0</div>
+          </div>
+          <div class="stat-item">
+            <div class="hud-label">Akurasi Kuis</div>
+            <div class="stat-val" id="go-accuracy">100%</div>
+          </div>
+        </div>
+
+        <button class="btn-primary" id="btn-restart-game">
+          <span>🔄 MAIN LAGI</span>
+        </button>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Scripts -->
+  <script src="audio.js"></script>
+  <script src="math.js"></script>
+  <script src="game.js"></script>
+</body>
+</html>
